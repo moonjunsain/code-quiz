@@ -1,19 +1,27 @@
 // Global variables
 var timeLeft = 200;
 var questions = [
-    "What is the capital Uruguay?", 
-    "What is the capital of Panama?"
+    "What is the airspeed velocity of an unladen swallow?", 
+    "NEE NEE NEE NEE NEE NEE",
+    "What is your favorite color?",
+    "You have encountered a rabbit in front of a cave, what would you do?"
 ];
 var answerChoices = [
-    ["Managua", "Santiago", "Monte Video", "Brasilia"], 
-    ["Panama City", "wrong", "wrong", "wrong"]
+    ["30 km/s", "100.7 km/s", "An African or an European swallow?", "Cats"], 
+    ["What?", "Can you shut up", "NEE", "Gives shrubbery"],
+    ["Blue", "The answer is not here", "Blue! oh wait yellowwww", "Why are you even asking?"],
+    ["Go and give it a carrot and name it Charly", "RUN AWAY! RUN AWAY!", "Why am I infront of a cave?", "Okay these questions don't make sense"]
 ];
 var correctAnswer = [
-    "Monte Video",
-    "Panama City"
+    "An African or an European swallow?",
+    "Gives shrubbery",
+    "Blue",
+    "RUN AWAY! RUN AWAY!"
+
 ]; 
 var currentQuestion = 0;
 var timeInterval;
+
 
 // All of our selectors
 var questionEl = document.querySelector("#question");
