@@ -1,0 +1,18 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#option1 {
+    display: none;
+}
+#option2 {
+    display: none;
+}
+#option3 {
+    display: none;
+}
+#option4 {
+    display: none;
+}
