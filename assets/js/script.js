@@ -1,12 +1,17 @@
 // Global variables
-var scores = 0; 
 var timeLeft = 200;
-var questions = ["What is the capital Uruguay?", "What is the capital of Panama?"];
+var questions = [
+    "What is the capital Uruguay?", 
+    "What is the capital of Panama?"
+];
 var answerChoices = [
     ["Managua", "Santiago", "Monte Video", "Brasilia"], 
-    [""]
-]; // made of arrays of strings
-var correctAnswer = ["Monte Video","Panama City"]; // made of strings
+    ["Panama City", "wrong", "wrong", "wrong"]
+];
+var correctAnswer = [
+    "Monte Video",
+    "Panama City"
+]; 
 var currentQuestion = 0;
 
 // All of our selectors
@@ -44,7 +49,7 @@ function start() {
     countTime();
         // set interval
         // once the timer hits 0, call endGame function
-        
+
     // hide the start button
     startBtn.setAttribute("style", "display: none;");
 
@@ -65,10 +70,27 @@ function nextQuestion(event){
     // figure out if the answer is right or wrong
         // if it's wrong, reduce the time, then show message "Wrong!"
         // if it's right, then show message "Correct!" (time left at the end is the user's score)
+    if(event.target.textContent == correctAnswer[currentQuestion]){
+        console.log("correct!");
+    }else{
+        console.log("wrong");
+        timeLeft -= 30;
+    }
+
     // increment the current question by 1
+    currentQuestion++;
+    // Determine if the user has reached the end of the question
+    if(currentQuestion == questions.length){
+        endGame();
+        return;
+    } 
+
     // Change the question
     // Change the choices
-    // 
+    questionEl.textContent = questions[currentQuestion];
+    for(var i = 0; i < optionBtns.length; i++){
+        optionBtns[i].textContent = answerChoices[currentQuestion][i];
+    }
     
 }
 
