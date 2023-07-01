@@ -13,6 +13,7 @@ var correctAnswer = [
     "Panama City"
 ]; 
 var currentQuestion = 0;
+var timeInterval;
 
 // All of our selectors
 var questionEl = document.querySelector("#question");
@@ -27,7 +28,7 @@ timeEl.textContent = "Time Left: " + timeLeft;
 
 // functions
 function countTime(){
-    var timeInterval = setInterval(function(){
+    timeInterval = setInterval(function(){
         if(timeLeft == 0){
             clearInterval(timeInterval);
             alert("Time has run out!!");
@@ -42,6 +43,8 @@ function countTime(){
         timeEl.textContent = "Time Left: " + timeLeft;
     }, 1000);
 }
+
+
 
 function start() {
     // triggered when they pressed button (event listener)
@@ -81,6 +84,7 @@ function nextQuestion(event){
     currentQuestion++;
     // Determine if the user has reached the end of the question
     if(currentQuestion == questions.length){
+        clearInterval(timeInterval);
         endGame();
         return;
     } 
@@ -96,10 +100,11 @@ function nextQuestion(event){
 
 function endGame() {
     // triggered either when timeLeft becomes 0 or when the user finishes all questions
+    alert("The game has ended");
     // Prompts the user for initials
     // display the score
     // hide the question
-    // If the user finishes before timeer runs out, stop the timer from running 
+    
 }
 
 
