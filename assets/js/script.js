@@ -22,6 +22,8 @@ var correctAnswer = [
 var currentQuestion = 0;
 var timeInterval;
 var userInitials = "EMPTY";
+var isCorrect = false;
+var showMsg = false;
 
 
 // All of our selectors
@@ -37,10 +39,12 @@ timeEl.textContent = "Time Left: " + timeLeft;
 var form = document.querySelector("#submitForm");
 var initials = document.querySelector("#initialsIn");
 var scoreEl = document.querySelector("#scoreDisplay");
+var correctMesg = document.querySelector("#correctness");
 
 // functions
 function countTime(){
     timeInterval = setInterval(function(){
+        correctMesg.style.display = "none";
         if(timeLeft == 0){
             clearInterval(timeInterval);
             alert("Time has run out!!");
@@ -51,7 +55,15 @@ function countTime(){
         }else{
             timeLeft--;
         }
-        
+        if(showMsg){
+            correctMesg.style.display = "flex";
+            if(isCorrect){
+                correctMesg.textContent = "Correct!"
+            }else {
+                correctMesg.textContent = "Wrong!"
+            }
+            showMsg = false;
+        }
         timeEl.textContent = "Time Left: " + timeLeft;
     }, 1000);
 }
@@ -87,16 +99,30 @@ function nextQuestion(event){
         // if it's right, then show message "Correct!" (time left at the end is the user's score)
     if(event.target.textContent == correctAnswer[currentQuestion]){
         console.log("correct!");
+        isCorrect = true;
     }else{
         console.log("wrong");
         timeLeft -= 30;
+        isCorrect = false;
+        
     }
 
     // increment the current question by 1
     currentQuestion++;
+
+    // To show correct or wrong message
+    showMsg = true;
     // Determine if the user has reached the end of the question
     if(currentQuestion == questions.length){
+        // if they did, stop the time, end the game.
         clearInterval(timeInterval);
+        timeEl.textContent = "Time Left: " + timeLeft;
+        correctMesg.style.display = "flex";
+        if(isCorrect){
+            correctMesg.textContent = "Finished! And you ended strong with corerct answer!";
+        }else {
+            correctMesg.textContent = "Finished! But you got the last question wrong...";
+        }
         endGame();
         return;
     } 
@@ -120,7 +146,7 @@ function endGame() {
     // display the score
    scoreEl.textContent = "Your Score: " + timeLeft;
 
-    // hide the question
+    // replace the question
     questionEl.textContent = "Let's see...";
 
 
@@ -128,6 +154,9 @@ function endGame() {
     for(var i = 0; i < optionBtns.length; i++){
         optionBtns[i].style.display = "none";
     }
+
+    // display correct wrong message
+    correctMesg.style.position = "inherit";
 
     
 
