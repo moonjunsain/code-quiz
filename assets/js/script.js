@@ -7,7 +7,7 @@ var questions = [
     "You have encountered a rabbit in front of a cave, what would you do?"
 ];
 var answerChoices = [
-    ["30 km/s", "100.7 km/s", "An African or an European swallow?", "Cats"], 
+    ["30 km/s", "How am I supposed to know that", "An African or an European swallow?", "Cats"], 
     ["What?", "Can you shut up", "NEE", "Gives shrubbery"],
     ["Blue", "The answer is not here", "Blue! oh wait yellowwww", "Why are you even asking?"],
     ["Go and give it a carrot and name it Charly", "RUN AWAY! RUN AWAY!", "Why am I infront of a cave?", "Okay these questions don't make sense"]
@@ -21,6 +21,7 @@ var correctAnswer = [
 ]; 
 var currentQuestion = 0;
 var timeInterval;
+var userInitials = "EMPTY";
 
 
 // All of our selectors
@@ -113,16 +114,20 @@ function endGame() {
     // display the score
     // hide the question
     
+
+    saveInitials();
+    
 }
 
 
 function saveInitials(){
     // triggered when the user submitted their initials
     // save the scores and their initials to the local storage
-        // read (save them to another var) the exising score
-        // add the new scores to the end of the array
-        // now overwrite the scores with the new array
+    localStorage.setItem('initials', userInitials);
+    localStorage.setItem('score', timeLeft);
+        
     // take the user to the highScore.html page
+    window.location.href = './assets/html/highScore.html';
 }
 
 // event listener to triger start function

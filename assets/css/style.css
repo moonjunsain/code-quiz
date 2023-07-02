@@ -4,6 +4,20 @@
     box-sizing: border-box;
 }
 
+
+ul li:nth-child(even){
+    background-color: #b4c6ee;
+}
+
+ul li {
+    cursor: pointer;
+}
+
+
+#options {
+    display: flex;
+    justify-content: center;
+}
 #option1 {
     display: none;
 }
