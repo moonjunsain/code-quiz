@@ -61,3 +61,17 @@ ul li {
     padding: 1.5%;
 }
 
+#submitForm {
+    display: none;
+    /* gets applied once the display changes to flex */
+    flex-direction: column;
+    align-items: center;
+    margin: 2%;
+}
+
+#initialsIn {
+    margin-top: 6%;
+    padding: 7px;
+    text-align: center;
+}
+

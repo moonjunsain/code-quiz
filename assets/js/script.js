@@ -34,6 +34,9 @@ var optionBtn4 = document.querySelector("#option4");
 var optionBtns = [optionBtn1, optionBtn2, optionBtn3, optionBtn4];
 var timeEl = document.querySelector("#time");
 timeEl.textContent = "Time Left: " + timeLeft;
+var form = document.querySelector("#submitForm");
+var initials = document.querySelector("#initialsIn");
+var scoreEl = document.querySelector("#scoreDisplay");
 
 // functions
 function countTime(){
@@ -109,19 +112,33 @@ function nextQuestion(event){
 
 function endGame() {
     // triggered either when timeLeft becomes 0 or when the user finishes all questions
-    alert("The game has ended");
+    
     // Prompts the user for initials
+    form.style.display = "flex";
+    userInitials = initials.value;
+    
     // display the score
+   scoreEl.textContent = "Your Score: " + timeLeft;
+
     // hide the question
+    questionEl.textContent = "Let's see...";
+
+
+    // hide the options
+    for(var i = 0; i < optionBtns.length; i++){
+        optionBtns[i].style.display = "none";
+    }
+
     
 
-    saveInitials();
+    form.addEventListener("submit",saveInitials);
     
 }
 
 
-function saveInitials(){
+function saveInitials(event){
     // triggered when the user submitted their initials
+    event.preventDefault();
     // save the scores and their initials to the local storage
     localStorage.setItem('initials', userInitials);
     localStorage.setItem('score', timeLeft);
