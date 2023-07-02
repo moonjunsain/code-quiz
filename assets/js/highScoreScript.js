@@ -3,3 +3,4 @@ var scores = localStorage.getItem('score');
 
 console.log(initials);
 console.log(scores);
+
