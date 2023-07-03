@@ -1,6 +1,10 @@
+// retrieves data from local storage
 var initials = localStorage.getItem('initials');
 var scores = localStorage.getItem('score');
 
-console.log(initials);
-console.log(scores);
+// selectors
+var ranking = document.querySelector("#ranks");
+var lists = document.createElement("li");
+lists.textContent = initials + ": " + scores;
+ranking.appendChild(lists);
 

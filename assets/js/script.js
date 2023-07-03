@@ -117,7 +117,7 @@ function nextQuestion(event){
         // if they did, stop the time, end the game.
         clearInterval(timeInterval);
         timeEl.textContent = "Time Left: " + timeLeft;
-        correctMesg.style.display = "flex";
+        correctMesg.style.position = "inherit";
         if(isCorrect){
             correctMesg.textContent = "Finished! And you ended strong with corerct answer!";
         }else {
@@ -141,7 +141,7 @@ function endGame() {
     
     // Prompts the user for initials
     form.style.display = "flex";
-    userInitials = initials.value;
+    
     
     // display the score
    scoreEl.textContent = "Your Score: " + timeLeft;
@@ -156,7 +156,7 @@ function endGame() {
     }
 
     // display correct wrong message
-    correctMesg.style.position = "inherit";
+    correctMesg.style.display = "flex";
 
     
 
@@ -168,6 +168,7 @@ function endGame() {
 function saveInitials(event){
     // triggered when the user submitted their initials
     event.preventDefault();
+    userInitials = initials.value;
     // save the scores and their initials to the local storage
     localStorage.setItem('initials', userInitials);
     localStorage.setItem('score', timeLeft);

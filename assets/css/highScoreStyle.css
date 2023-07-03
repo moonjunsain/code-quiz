@@ -2,12 +2,27 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Impact, Arial, Helvetica, sans-serif;
-}
+}    
 
 header {
     display: flex;
     justify-content: center;
     letter-spacing: 1rem;
     font-size: 150%;
+    font-family: Impact, Arial, Helvetica, sans-serif;
+}
+
+main ol {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    left: -13vw;
+    margin-top: 4vh;
+    font-size: 157%;
+    font-family: cursive, Arial, sans-serif;
+}
+
+main ol li {
+    margin-top: 1vh;
+    margin-bottom: 1vh;
 }
