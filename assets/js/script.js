@@ -23,8 +23,18 @@ var currentQuestion = 0;
 var timeInterval;
 var userInitials = "EMPTY";
 var isCorrect = false;
-var showMsg = false;
 
+var listofInitials =  [];
+if(localStorage.getItem('initials')){
+    listofInitials = JSON.parse(localStorage.getItem('initials'));
+}
+
+var listofScores = [];
+if(localStorage.getItem('score')){
+    listofScores = JSON.parse(localStorage.getItem('score'));
+}
+console.log(listofInitials);
+console.log(listofScores);
 
 // All of our selectors
 var questionEl = document.querySelector("#question");
@@ -44,7 +54,6 @@ var correctMesg = document.querySelector("#correctness");
 // functions
 function countTime(){
     timeInterval = setInterval(function(){
-        correctMesg.style.display = "none";
         if(timeLeft == 0){
             clearInterval(timeInterval);
             alert("Time has run out!!");
@@ -55,15 +64,7 @@ function countTime(){
         }else{
             timeLeft--;
         }
-        if(showMsg){
-            correctMesg.style.display = "flex";
-            if(isCorrect){
-                correctMesg.textContent = "Correct!"
-            }else {
-                correctMesg.textContent = "Wrong!"
-            }
-            showMsg = false;
-        }
+
         timeEl.textContent = "Time Left: " + timeLeft;
     }, 1000);
 }
@@ -99,30 +100,29 @@ function nextQuestion(event){
         // if it's right, then show message "Correct!" (time left at the end is the user's score)
     if(event.target.textContent == correctAnswer[currentQuestion]){
         console.log("correct!");
-        isCorrect = true;
+        correctMesg.style.display = "flex";
+        correctMesg.textContent = "Correct!";
     }else{
         console.log("wrong");
+        correctMesg.style.display = "flex";
+        correctMesg.textContent = "Wrong!";
         timeLeft -= 30;
-        isCorrect = false;
         
     }
-
+    
+    setTimeout(function(){
+        correctMesg.style.display = "none";
+    }, 700)
     // increment the current question by 1
     currentQuestion++;
 
-    // To show correct or wrong message
-    showMsg = true;
+    
     // Determine if the user has reached the end of the question
     if(currentQuestion == questions.length){
         // if they did, stop the time, end the game.
         clearInterval(timeInterval);
         timeEl.textContent = "Time Left: " + timeLeft;
-        correctMesg.style.position = "inherit";
-        if(isCorrect){
-            correctMesg.textContent = "Finished! And you ended strong with corerct answer!";
-        }else {
-            correctMesg.textContent = "Finished! But you got the last question wrong...";
-        }
+        correctMesg.style.top = "50vh"
         endGame();
         return;
     } 
@@ -155,9 +155,6 @@ function endGame() {
         optionBtns[i].style.display = "none";
     }
 
-    // display correct wrong message
-    correctMesg.style.display = "flex";
-
     
 
     form.addEventListener("submit",saveInitials);
@@ -170,8 +167,12 @@ function saveInitials(event){
     event.preventDefault();
     userInitials = initials.value;
     // save the scores and their initials to the local storage
-    localStorage.setItem('initials', userInitials);
-    localStorage.setItem('score', timeLeft);
+    listofInitials.push(userInitials);
+    listofScores.push(timeLeft);
+    console.log(listofScores);
+    console.log(listofInitials);
+    localStorage.setItem('initials', JSON.stringify(listofInitials));
+    localStorage.setItem('score', JSON.stringify(listofScores));
         
     // take the user to the highScore.html page
     window.location.href = './assets/html/highScore.html';
