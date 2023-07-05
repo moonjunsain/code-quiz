@@ -13,7 +13,9 @@ for(var i = 0; i < initials.length; i++){
 }
 
 // sorting it from the highest score to lowest
-combinedData.sort();
+combinedData.sort(function(a, b){
+    return b.userScore - a.userScore;
+});
 
 // Putting the list items all to ranking
 for(var i = 0; i < combinedData.length; i++){
