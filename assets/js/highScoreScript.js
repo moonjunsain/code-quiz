@@ -5,7 +5,7 @@ var scores = JSON.parse(localStorage.getItem('score'));
 // selectors
 var ranking = document.querySelector("#ranks");
 
-var combinedData = [];
+var combinedData = [{userInitial: "June - try harder", userScore: 99999}];
 
 // combine data into object array
 for(var i = 0; i < initials.length; i++){

@@ -105,7 +105,7 @@ function nextQuestion(event){
     }else{
         console.log("wrong");
         correctMesg.style.display = "flex";
-        correctMesg.textContent = "Wrong!";
+        correctMesg.textContent = "Come on... it's a common sense...";
         timeLeft -= 30;
         
     }

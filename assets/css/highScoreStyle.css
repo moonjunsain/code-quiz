@@ -27,3 +27,23 @@ main ol li {
     margin-top: 1vh;
     margin-bottom: 1vh;
 }
+
+#backBtn {
+    color: purple;
+    background-color: snow;
+    font-size: 150%;
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+#backBtn a {
+    text-decoration: none;
+}
+
+#btnContainer{
+    display: flex;
+    justify-content: center;
+    margin-top: 5%;
+
+}
