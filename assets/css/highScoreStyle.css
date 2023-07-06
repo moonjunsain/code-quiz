@@ -29,7 +29,6 @@ main ol li {
 }
 
 #backBtn {
-    color: purple;
     background-color: snow;
     font-size: 150%;
     font-weight: bold;
@@ -39,6 +38,7 @@ main ol li {
 
 #backBtn a {
     text-decoration: none;
+    color: purple;
 }
 
 #btnContainer{
